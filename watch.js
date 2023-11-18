@@ -18,6 +18,7 @@ function watch(config){
   var username   = config.username
   var cartridges = config.cartridges
   var password   = config.password
+  var ignore     = config.ignore
 
 
   var server = new dwServer(host, 'dw-utils', username, password)
@@ -220,6 +221,7 @@ function watch(config){
 
       chokidar.watch(cartridges, {
         persistent: true,
+        ignored: ignore,
         ignoreInitial: true,
         awaitWriteFinish: {
           stabilityThreshold: config.stabilityThreshold,

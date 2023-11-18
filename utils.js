@@ -7,7 +7,7 @@ var path = require('path')
 var glob = require('glob')
 var shortid = require('shortid')
 
-function zip(cartridges, metadataPath, outfile){
+function zip(cartridges, metadataPath, outfile, ignore){
   return new Promise((resolve, reject) => {
     var zipfile = new yazl.ZipFile()
 
@@ -16,7 +16,8 @@ function zip(cartridges, metadataPath, outfile){
     glob(cartridges + '/**', {
       follow: true,
       nosort: true,
-      nodir: true
+      nodir: true,
+      ignore: ignore
     },
     function(err, matches){
       if (err){

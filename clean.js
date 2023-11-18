@@ -14,6 +14,7 @@ function clean(config){
   var cartridges = config.cartridges
   var uploadPath = config.uploadPath || cartridges
   var password   = config.password
+  var ignore     = config.ignore
 
   var cartridgeRelativePath = version;
   if (cartridges != uploadPath) {
@@ -73,7 +74,7 @@ function clean(config){
   })
   .then(() => {
     process.stdout.write('Zipping local files:      ... ')
-    return utils.zip(uploadPath, cartridgeRelativePath, version  + '.zip')
+    return utils.zip(uploadPath, cartridgeRelativePath, version  + '.zip', ignore)
   })
   .then(done)
   .then(() => {
